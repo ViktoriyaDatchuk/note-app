@@ -16,16 +16,16 @@ export const NoteField = (): ReactElement => {
     setNotesStore(notes);
   }, [notes]);
 
-  const addNotes = () => {
+  const addNotes = (): void => {
     setModal(true);
     setAction(noteActions.Add);
   };
 
-  const deleteNote = (id: number) => {
+  const deleteNote = (id: number): void => {
     setNotes(notes.filter((note) => note.id !== id));
   };
 
-  const changeNote = (id: number, item: Note) => {
+  const changeNote = (id: number, item: Note): void => {
     setModal(true);
     setAction(noteActions.Change);
     setselectNote(item);
@@ -55,7 +55,7 @@ export const NoteField = (): ReactElement => {
           </div>
         </div>
       </div>
-      {modal && <NoteForm action={action} selected={selectNote} />}
+      {modal && <NoteForm action={action} selected={selectNote} onClose={() => setModal(false)} />}
     </main>
   );
 };
